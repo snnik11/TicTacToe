@@ -6,7 +6,7 @@ namespace TicTacToeGame
     {
         static char[] myArray = { '1', '2', '3', '4', '5', '6', '7' , '8', '9'};
         static int player = 1;
-        static int mamekAMove;
+        static int makeAMove;
         static int win = 0;
         //if win 1 = a player won
         //if win 0 = nobody won
@@ -15,13 +15,53 @@ namespace TicTacToeGame
         static void Main(string[] args)
         {
            // Console.WriteLine("Hello World!");
-            Display();
+          //  Display();
 
             do
             {
                 Console.Clear();
+                Console.WriteLine("Player 1 = X and Player 2 = O");
+                Console.WriteLine("\n");
+                if(player % 2 == 0)
+                {
+                    Console.WriteLine("Player 2 turn ");
+
+                }
+                else
+                {
+                    Console.WriteLine("Player 1 Turn");
+                }
+                Console.WriteLine("\n");
+                Display();
+                Console.WriteLine("\n");
+                Console.WriteLine("Please enter a number from 1 - 9");
+                makeAMove = int.Parse(Console.ReadLine());
+                Console.WriteLine("You entered {0}", makeAMove);
+
+                if (myArray[makeAMove] != 'X' && myArray[makeAMove] != 'O')
+                {
+                    if (player % 2 == 0)
+                    {
+                        myArray[makeAMove] = 'O';
+                        player++;
+                    }
+                    else
+                    {
+                        myArray[makeAMove] = 'X';
+                        player++;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("The row is already filled");
+                }
+                win = Win();
+
             }
             while (win != 1 && win != -1);
+
+            Console.Clear();
+            Display();
 
             if ( win == 1)
             {
